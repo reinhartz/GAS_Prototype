@@ -4,14 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "Character/AeonCharacterBase.h"
+#include "Interaction/HoverInterface.h"
 #include "NPC.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class GAS_API ANPC : public AAeonCharacterBase
+class GAS_API ANPC : public AAeonCharacterBase, public IHoverInterface
 {
 	GENERATED_BODY()
-	
+public:
+	ANPC();
+	virtual void HighlightActor() override;
+	virtual void UnHighlightActor() override;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool bHighlighted = false;
 };
