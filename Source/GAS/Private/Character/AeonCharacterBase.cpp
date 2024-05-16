@@ -12,6 +12,11 @@ AAeonCharacterBase::AAeonCharacterBase()
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+UAbilitySystemComponent* AAeonCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void AAeonCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
