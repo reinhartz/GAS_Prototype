@@ -37,6 +37,10 @@ private:
 	void Move(const FInputActionValue& InputActionValue);
 
 	void CursorTrace();
+
+	// Supposedly this is the proper way to do this but it's busted for now.
+	// TScriptInterface<IHoverInterface> LastActor;
+	// TScriptInterface<IHoverInterface> ThisActor;
 	IHoverInterface* LastActor;
 	IHoverInterface* ThisActor;
 };
