@@ -26,4 +26,5 @@ public:
 	/** end Hover Interface memebrs **/
 protected:
 	virtual void BeginPlay() override;
+	virtual void InitAbilityActorInfo();
 };

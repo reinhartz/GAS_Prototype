@@ -19,7 +19,7 @@ class GAS_API AAuraPlayerState : public APlayerState, public IAbilitySystemInter
 	GENERATED_BODY()
 public:
 	AAuraPlayerState();
-		virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 protected:
 	UPROPERTY()

@@ -22,3 +22,7 @@ void AAeonCharacterBase::BeginPlay()
 	Super::BeginPlay();
 	
 }
+
+void AAeonCharacterBase::InitAbilityActorInfo()
+{
+}
