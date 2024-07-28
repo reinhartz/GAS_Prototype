@@ -3,6 +3,7 @@
 
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 void UOverlayWidgetController::BroadcastInitialValues()
 {
@@ -30,6 +31,23 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		AuraAttributeSet->GetMana_MaxAttribute()).AddUObject(this, &UOverlayWidgetController::Mana_Max_Changed);
+
+	Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+		[this](const FGameplayTagContainer& AssetTags) 
+		{
+			for (const FGameplayTag& Tag : AssetTags)
+			{
+				// "Message.Potion.Health".MatchesTage("Message") will return True, "Message".MatchesTag("Message.Potion.Health") will return False
+
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+				if (Tag.MatchesTag(MessageTag))
+				{
+					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
+			}
+		}
+	);
 }
 
 void UOverlayWidgetController::Health_Changed(const FOnAttributeChangeData& Data) const
