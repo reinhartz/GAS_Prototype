@@ -26,11 +26,7 @@ struct FUIWidgetRow : public FTableRowBase
 
 class UAuraUserWidget;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealth_ChangedSignature, float, NewHealth);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealth_Max_ChangedSignature, float, NewHealth_Max);
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMana_ChangedSignature, float, NewMana);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMana_Max_ChangedSignature, float, NewMana_Max);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewValue);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature, FUIWidgetRow, Row);
 
@@ -47,16 +43,16 @@ public:
 	virtual void BindCallbacksToDependencies() override;
 
 	UPROPERTY(BlueprintAssignable, Category="GAS|Attributes")
-	FOnHealth_ChangedSignature OnHealth_Changed;
+	FOnAttributeChangedSignature OnHealth_Changed;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
-	FOnHealth_Max_ChangedSignature OnHealth_Max_Changed;
+	FOnAttributeChangedSignature OnHealth_Max_Changed;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
-	FOnMana_ChangedSignature OnMana_Changed;
+	FOnAttributeChangedSignature OnMana_Changed;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
-	FOnMana_Max_ChangedSignature OnMana_Max_Changed;
+	FOnAttributeChangedSignature OnMana_Max_Changed;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FMessageWidgetRowSignature MessageWidgetRowDelegate;
@@ -64,12 +60,6 @@ public:
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
 	TObjectPtr<UDataTable> MessageWidgetDataTable;
-
-	void Health_Changed(const FOnAttributeChangeData& Data) const;
-	void Health_Max_Changed(const FOnAttributeChangeData& Data) const;
-
-	void Mana_Changed(const FOnAttributeChangeData& Data) const;
-	void Mana_Max_Changed(const FOnAttributeChangeData& Data) const;
 
 	template<typename T>
 	T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
