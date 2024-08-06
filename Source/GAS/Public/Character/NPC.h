@@ -24,7 +24,15 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	bool bHighlighted = false;
 	/** end Hover Interface memebrs **/
+
+	/** Combat Interface **/
+	virtual int32 GetCharacterLevel() override;
+	/** end Combat Interface **/
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	int32 Level = 1;
 };

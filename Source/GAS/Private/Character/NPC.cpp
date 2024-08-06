@@ -17,6 +17,11 @@ ANPC::ANPC()
 	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 }
 
+int32 ANPC::GetCharacterLevel()
+{
+	return Level;
+}
+
 void ANPC::BeginPlay()
 {
 	Super::BeginPlay();
