@@ -11,6 +11,7 @@
 class UAbilitySystemComponent;
 class UAttributeSet;
 class UGameplayEffect;
+class UGameplayAbility;
 
 UCLASS(Abstract)
 class GAS_API AAeonCharacterBase : public ACharacter, public IAbilitySystemInterface, public ICombatInterface
@@ -18,10 +19,13 @@ class GAS_API AAeonCharacterBase : public ACharacter, public IAbilitySystemInter
 	GENERATED_BODY()
 
 public:
+	
 	AAeonCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+
 protected:
+
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
@@ -47,4 +51,10 @@ protected:
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
 
 	void InitializeDefaultAttributes() const;
+
+	void AddCharacterAbilities();
+private:
+
+	UPROPERTY(EditAnywhere, Category = "Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 };

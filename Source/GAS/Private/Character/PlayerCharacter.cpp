@@ -27,7 +27,7 @@ void APlayerCharacter::PossessedBy(AController* NewController)
 
 	// Initialize ability actor info for Server
 	InitAbilityActorInfo();
-
+	AddCharacterAbilities();
 }
 
 void APlayerCharacter::OnRep_PlayerState()
