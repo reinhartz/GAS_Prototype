@@ -77,4 +77,54 @@ void FAuraGameplayTags::InitializeNativeGameplayTags()
 		FName("Attributes.Secondary.CriticalDamage"),
 		FString("Extra damage dealt by Critical Hit")
 	);
+
+	// Input Tags
+	GameplayTags.InputTag_LMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.LMB"),
+		FString("Input Tag for Left Mouse Button")
+	);
+	GameplayTags.InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.RMB"),
+		FString("Input Tag for Right Mouse Button")
+	);
+	GameplayTags.InputTag_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.1"),
+		FString("Input Tag for 1 Key")
+	);
+	GameplayTags.InputTag_2 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.2"),
+		FString("Input Tag for 2 Key")
+	);
+	GameplayTags.InputTag_3 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.3"),
+		FString("Input Tag for 3 Key")
+	);
+	GameplayTags.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.4"),
+		FString("Input Tag for 4 Key")
+	);
+	GameplayTags.InputTag_5 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.5"),
+		FString("Input Tag for 5 Key")
+	);
+	GameplayTags.InputTag_6 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.6"),
+		FString("Input Tag for 6 Key")
+	);
+	GameplayTags.InputTag_7 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.7"),
+		FString("Input Tag for 7 Key")
+	);
+	GameplayTags.InputTag_8 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.8"),
+		FString("Input Tag for 8 Key")
+	);
+	GameplayTags.InputTag_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.9"),
+		FString("Input Tag for 9 Key")
+	);
+	GameplayTags.InputTag_0 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.0"),
+		FString("Input Tag for 0 Key")
+	);
 }
