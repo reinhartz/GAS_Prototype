@@ -25,6 +25,12 @@ void AAeonCharacterBase::BeginPlay()
 	
 }
 
+FVector AAeonCharacterBase::GetCombatSocketLocation()
+{
+	check(Weapon);
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
 void AAeonCharacterBase::InitAbilityActorInfo()
 {
 }
