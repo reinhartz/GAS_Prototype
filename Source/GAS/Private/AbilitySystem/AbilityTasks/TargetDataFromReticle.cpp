@@ -7,14 +7,12 @@
 UTargetDataFromReticle* UTargetDataFromReticle::CreateTargetDataFromReticle(UGameplayAbility* OwningAbility)
 {
 	UTargetDataFromReticle* MyObj = NewAbilityTask<UTargetDataFromReticle>(OwningAbility);
-
 	return MyObj;
 }
 
 void UTargetDataFromReticle::Activate()
 {
 	const bool bIsLocallyControlled = Ability->GetCurrentActorInfo()->IsLocallyControlled();
-
 	if (bIsLocallyControlled)
 	{
 		SendMouseCursorData();
@@ -30,7 +28,6 @@ void UTargetDataFromReticle::Activate()
 			SetWaitingOnRemotePlayerData();
 		}
 	}
-		
 }
 
 void UTargetDataFromReticle::SendMouseCursorData()
@@ -55,6 +52,8 @@ void UTargetDataFromReticle::SendMouseCursorData()
 
 	if (ShouldBroadcastAbilityTaskDelegates())
 	{
+		FString HitLocationString = DataHandle.Get(0)->GetHitResult()->Location.ToString();
+		UE_LOG(LogTemp, Warning, TEXT("From SendMouseCursorData, Location Broadcasted: %s"), *HitLocationString);
 		ValidData.Broadcast(DataHandle);
 	}
 }
@@ -64,6 +63,8 @@ void UTargetDataFromReticle::OnTargetDataReplicatedCallback(const FGameplayAbili
 	AbilitySystemComponent->ConsumeClientReplicatedTargetData(GetAbilitySpecHandle(), GetActivationPredictionKey());
 	if (ShouldBroadcastAbilityTaskDelegates())
 	{
+		FString HitLocationString = DataHandle.Get(0)->GetHitResult()->Location.ToString();
+		UE_LOG(LogTemp, Warning, TEXT("From OnTargetDataReplicatedCallback, Location Broadcasted: %s"), *HitLocationString);
 		ValidData.Broadcast(DataHandle);
 	}
 }
