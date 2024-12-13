@@ -2,6 +2,7 @@
 
 
 #include "Character/NPC.h"
+
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
@@ -54,8 +55,11 @@ void ANPC::BeginPlay()
 			}
 		);
 
-		OnHealthChanged.Broadcast(AuraAS->GetHealth());
-		OnHealth_MaxChanged.Broadcast(AuraAS->GetHealth_Max());
+		if (HasAuthority())
+		{
+			OnHealthChanged.Broadcast(AuraAS->GetHealth());
+			OnHealth_MaxChanged.Broadcast(AuraAS->GetHealth_Max());
+		}
 	}
 }
 

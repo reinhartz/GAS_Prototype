@@ -23,13 +23,14 @@ public:
 	/** Hover Interface **/
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
+	virtual void InitializeDefaultAttributes() const override;
 
 	UPROPERTY(BlueprintReadOnly)
 	bool bHighlighted = false;
 	/** end Hover Interface memebrs **/
 
 	/** Combat Interface **/
-	virtual int32 GetCharacterLevel() override;
+	virtual int32 GetCharacterLevel();
 	/** end Combat Interface **/
 
 	UPROPERTY(BlueprintAssignable)
@@ -41,7 +42,6 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo();
-	virtual void InitializeDefaultAttributes() const override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	int32 Level = 1;
